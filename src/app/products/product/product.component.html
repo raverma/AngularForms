@@ -1,0 +1,58 @@
+<form class="product-form" #productForm="ngForm" (submit)="onSubmit(productForm)">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" 
+        name="productName" #productName="ngModel" 
+        [(ngModel)]="productService.formData.productName"
+        placeholder="Product Name" required>
+        <div class="alert alert-danger" *ngIf="productName.invalid && productName.touched">Product Name is required</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" 
+      name="price" #price="ngModel" 
+      [(ngModel)]="productService.formData.price"
+      placeholder="Price" required>
+      <div class="alert alert-danger" *ngIf="price.invalid && price.touched">Price is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" name="productSpecs"
+    #productSpecs="ngModel" [(ngModel)]="productService.formData.productSpecs"
+    placeholder="Product Specification">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input class="form-control" 
+      name="supplier" #supplier="ngModel" 
+      [(ngModel)]="productService.formData.supplier"
+      placeholder="Supplier Name" required>
+      <div class="validation-error" *ngIf="supplier.invalid && supplier.touched">Supplier name is required</div>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="form-control" 
+        name="quoteDate" #quoteDate="ngModel" 
+        [(ngModel)]="productService.formData.quoteDate"
+        placeholder="Quotation Date">
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <input class="form-control" name="contactEmail" #contactEmail="ngModel"
+          [(ngModel)]="productService.formData.contactEmail"
+          placeholder="Contact Email">
+        </div>
+        <div class="form-group col-md-6">
+            <input type="file" name="productImage" (change)="onFileSelected($event)" />
+        </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <button type="button" [disabled]="!productForm.valid" (click)="onSave()" class="btn btn-lg btn-block btn-info">
+        <i class="fa fa-floppy-o">Save</i>
+      </button>
+    </div>
+    <!-- <div class="form-group col-md-4">
+      <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(productForm)"><i class="fa fa-repeat">Reset</i></button>
+    </div> -->
+  </div>
+</form>
